@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/buscar"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡POKÉMON SALVAJE!"
+            android:textSize="32sp"
+            android:textColor="#FFDE00"
+            android:fontFamily="@font/pokemon_solid"
+            android:letterSpacing="0.05"
+            android:shadowColor="#3B4CCA"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
+            android:layout_marginBottom="20dp"/>
+
+        <ImageView
+            android:id="@+id/ivWildPokemon"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="10dp"
+            android:src="@android:drawable/ic_menu_help" />
+
+        <TextView
+            android:id="@+id/tvWildName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="..."
+            android:textSize="22sp"
+            android:textColor="#333333"
+            android:fontFamily="@font/pokemon_solid"
+            android:letterSpacing="0.05"
+            android:textAllCaps="true"
+
+            android:background="@drawable/bg_trainer_badge"
+            android:paddingStart="24dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="8dp"
+
+            android:elevation="4dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvWildPower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Poder: ?"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/pokemon_solid"
+            android:letterSpacing="0.05"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:id="@+id/tvStatusMessage"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Analizando..."
+            android:textAlignment="center"
+            android:textColor= "#333333"
+            android:textSize="16sp"
+            android:fontFamily="@font/pokemon_solid"
+            android:layout_marginBottom="20dp"
+            android:padding="12dp"
+            android:background="@drawable/bg_trainer_badge"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="2dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCapture"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:text="¡LANZAR POKEBALL!"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/pokemon_solid"
+            android:letterSpacing="0.1"
+            android:enabled="false"
+            android:backgroundTint="#CC0000"
+            app:cornerRadius="20dp"
+            android:stateListAnimator="@null"
+            android:elevation="8dp"
+            android:layout_marginBottom="12dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEscape"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:text="HUIR"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/pokemon_solid"
+            android:letterSpacing="0.1"
+            android:backgroundTint="#3B4CCA"
+            app:cornerRadius="20dp"
+            android:stateListAnimator="@null"
+            android:elevation="8dp"/>
+
+    </LinearLayout>
+
+    <com.example.pokedam.FullScreenVideoView
+        android:id="@+id/videoViewCapture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvSuccessOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#DD000000"
+        android:gravity="center"
+        android:padding="32dp"
+        android:text="¡POKÉMON\nCAPTURADO!"
+        android:textColor="#FFEB3B"
+        android:fontFamily="@font/pokemon_solid"
+        android:letterSpacing="0.1"
+        android:textSize="40sp"
+        android:visibility="gone" />
+
+</FrameLayout>
