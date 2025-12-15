@@ -1,5 +1,6 @@
 package com.example.pokedam;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
@@ -109,8 +110,24 @@ public class CaptureActivity extends AppCompatActivity {
         viewModel.getCaptureSuccess().observe(this, success -> {
             if (success) {
                 tvSuccessOverlay.setVisibility(View.VISIBLE);
-                // Esperar 2 segundos y salir
-                new Handler().postDelayed(this::finish, 2000);
+
+                // Esperar 2 segundos para leer el mensaje y luego cambiar de pantalla
+                new Handler().postDelayed(() -> {
+
+                    // 1. Preparamos el viaje al Inventario
+                    Intent intent = new Intent(CaptureActivity.this, PokemonListActivity.class);
+
+                    // 2. ¡IMPORTANTE! Hay que pasar el usuario para que cargue la lista correcta
+                    intent.putExtra("USERNAME", currentUsername);
+
+                    // 3. Evita que se acumulen pantallas si ya venías de la lista
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    // 4. Iniciamos y cerramos la captura
+                    startActivity(intent);
+                    finish();
+
+                }, 2000);
             }
         });
 

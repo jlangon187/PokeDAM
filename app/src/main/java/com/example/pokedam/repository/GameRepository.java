@@ -219,4 +219,56 @@ public class GameRepository {
             callback.onCountReceived(count);
         });
     }
+
+    public void deleteUser(User user, LoginCallback callback) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            gameDao.deleteUser(user);
+            // Devolvemos éxito (pasamos null porque el usuario ya no existe)
+            postResult(() -> callback.onSuccess(null));
+        });
+    }
+
+    public interface UserListCallback {
+        void onResult(List<User> users);
+    }
+
+    public void getAllUsers(UserListCallback callback) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            List<User> users = gameDao.getAllUsers();
+            postResult(() -> callback.onResult(users));
+        });
+    }
+
+    public void updateUser(User user, LoginCallback callback) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            gameDao.updateUser(user);
+            postResult(() -> callback.onSuccess(user));
+        });
+    }
+
+    // Metodo para ACTUALIZAR USUARIO COMPLETO (Con cambio de nombre)
+    public void updateUserProfile(String oldName, String newName, String newPass, LoginCallback callback) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            // 1. Comprobar si el nuevo nombre ya existe (si es diferente al actual)
+            if (!oldName.equals(newName)) {
+                User exists = gameDao.checkUserExists(newName);
+                if (exists != null) {
+                    postResult(() -> callback.onError("¡Ese nombre de usuario ya existe!"));
+                    return;
+                }
+            }
+
+            try {
+                gameDao.updateProfile(oldName, newName, newPass);
+                gameDao.updatePokemonOwner(oldName, newName);
+
+                // Devolvemos un objeto usuario con los datos nuevos
+                User updatedUser = new User(newName, newPass);
+                postResult(() -> callback.onSuccess(updatedUser));
+
+            } catch (Exception e) {
+                postResult(() -> callback.onError("Error al actualizar: " + e.getMessage()));
+            }
+        });
+    }
 }

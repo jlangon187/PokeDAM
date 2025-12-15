@@ -76,6 +76,20 @@
             android:stateListAnimator="@null"
             android:elevation="8dp"/>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAdminSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_margin="0dp"
+
+            android:contentDescription="Administrar Usuarios"
+            android:src="@android:drawable/ic_menu_preferences"
+            app:backgroundTint="#FDFDFD"
+
+            app:elevation="6dp"
+            app:tint="#1D1B1B" />
+
     </LinearLayout>
 
 </FrameLayout>

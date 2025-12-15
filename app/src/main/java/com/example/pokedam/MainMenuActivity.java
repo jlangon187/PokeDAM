@@ -15,6 +15,7 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        com.google.android.material.floatingactionbutton.FloatingActionButton btnAdmin = findViewById(R.id.btnAdminSettings);
 
         // 1. Recibir el usuario
         currentUsername = getIntent().getStringExtra("USERNAME");
@@ -37,6 +38,12 @@ public class MainMenuActivity extends AppCompatActivity {
         Button btnSearch = findViewById(R.id.btnSearchWild);
         btnSearch.setOnClickListener(v -> {
             Intent intent = new Intent(MainMenuActivity.this, CaptureActivity.class);
+            intent.putExtra("USERNAME", currentUsername);
+            startActivity(intent);
+        });
+
+        btnAdmin.setOnClickListener(v -> {
+            Intent intent = new Intent(MainMenuActivity.this, UserListActivity.class);
             intent.putExtra("USERNAME", currentUsername);
             startActivity(intent);
         });

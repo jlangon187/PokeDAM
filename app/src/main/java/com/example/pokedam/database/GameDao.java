@@ -24,6 +24,20 @@ public interface GameDao {
     @Query("SELECT * FROM users WHERE username = :username")
     User checkUserExists(String username);
 
+    @androidx.room.Delete
+    void deleteUser(User user);
+
+    @androidx.room.Query("SELECT * FROM users")
+    List<User> getAllUsers();
+
+    @androidx.room.Update
+    void updateUser(User user);
+
+    @androidx.room.Query("UPDATE users SET username = :newUsername, password = :newPassword WHERE username = :oldUsername")
+    void updateProfile(String oldUsername, String newUsername, String newPassword);
+
+    @androidx.room.Query("UPDATE pokemons SET owner = :newUsername WHERE owner = :oldUsername")
+    void updatePokemonOwner(String oldUsername, String newUsername);
 
     // --- ZONA POKEMONS ---
 
@@ -44,4 +58,6 @@ public interface GameDao {
 
     @Query("SELECT * FROM pokemons WHERE apiId = :apiId LIMIT 1")
     PokemonEntity getPokemonByApiId(int apiId);
+
+
 }

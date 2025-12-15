@@ -21,10 +21,7 @@ public class PokemonListActivity extends AppCompatActivity {
     private PokemonListViewModel viewModel;
     private RecyclerView recyclerView;
     private PokemonAdapter adapter;
-
-    // --- ERROR ESTABA AQUÍ ---
-    // private LinearLayout emptyState;  <-- MAL (Tu XML ahora tiene un CardView)
-    private View emptyState;          // <-- BIEN (View sirve para todo)
+    private View emptyState;
     // -------------------------
 
     private Button btnSearch;
